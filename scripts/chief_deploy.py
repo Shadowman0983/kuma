@@ -138,6 +138,10 @@ def setup_dependencies(ctx):
         with ctx.lcd(settings.VENV_DIR):
             ctx.local('ln -s lib lib64')
 
+        # And now for node,js node_modules
+        ctx.local('rm -rf kumascript/node_modules')
+        ctx.local('npm install --production')
+
 
 @task
 def pre_update(ctx, ref=settings.UPDATE_REF):
