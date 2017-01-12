@@ -138,8 +138,9 @@ def setup_dependencies(ctx):
         with ctx.lcd(settings.VENV_DIR):
             ctx.local('ln -s lib lib64')
 
-        # And now for node,js node_modules
-        ctx.local('rm -rf kumascript/node_modules')
+    # And now for node,js node_modules
+    with ctx.lcd(os.path.join(settings.SRC_DIR, 'kumascript')):
+        ctx.local('rm -rf node_modules')
         ctx.local('npm install --production')
 
 
